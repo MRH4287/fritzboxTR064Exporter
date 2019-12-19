@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TR064Exporter", "TR064Exporter.csproj", "{A81B653B-B3A6-431C-8836-77AD537C4DDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TR064Exporter", "TR064Exporter\TR064Exporter.csproj", "{A81B653B-B3A6-431C-8836-77AD537C4DDA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rdParty", "3rdParty", "{C4269702-7E0D-45E7-A280-3DAA1732717B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.FritzBox.API", "..\..\submodule\PS.FritzBox.API\PS.FritzBox.API\PS.FritzBox.API.csproj", "{E3066202-2823-4121-983C-6F9C32CDF921}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.FritzBox.API", "submodule\PS.FritzBox.API\PS.FritzBox.API\PS.FritzBox.API.csproj", "{E3066202-2823-4121-983C-6F9C32CDF921}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
