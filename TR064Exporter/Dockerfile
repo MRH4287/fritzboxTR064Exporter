@@ -18,4 +18,5 @@ RUN dotnet publish "TR064Exporter.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+EXPOSE 5000/tcp
 ENTRYPOINT ["dotnet", "TR064Exporter.dll"]
