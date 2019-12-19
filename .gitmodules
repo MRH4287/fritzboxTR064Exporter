@@ -1,0 +1,3 @@
+[submodule "submodule/PS.FritzBox.API"]
+	path = submodule/PS.FritzBox.API
+	url = https://github.com/MRH4287/PS.FritzBox.API.git
