@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TR064Exporter", "TR064Exporter.csproj", "{A81B653B-B3A6-431C-8836-77AD537C4DDA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rdParty", "3rdParty", "{C4269702-7E0D-45E7-A280-3DAA1732717B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PS.FritzBox.API", "..\..\submodule\PS.FritzBox.API\PS.FritzBox.API\PS.FritzBox.API.csproj", "{E3066202-2823-4121-983C-6F9C32CDF921}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A81B653B-B3A6-431C-8836-77AD537C4DDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A81B653B-B3A6-431C-8836-77AD537C4DDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A81B653B-B3A6-431C-8836-77AD537C4DDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A81B653B-B3A6-431C-8836-77AD537C4DDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3066202-2823-4121-983C-6F9C32CDF921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3066202-2823-4121-983C-6F9C32CDF921}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3066202-2823-4121-983C-6F9C32CDF921}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3066202-2823-4121-983C-6F9C32CDF921}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E3066202-2823-4121-983C-6F9C32CDF921} = {C4269702-7E0D-45E7-A280-3DAA1732717B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27787BCA-DC26-472F-B636-4E7EB8AB59F4}
+	EndGlobalSection
+EndGlobal
