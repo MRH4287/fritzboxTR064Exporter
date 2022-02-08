@@ -38,7 +38,7 @@ namespace TR064Exporter
             services.AddSingleton<ICollector, LANEthernetCollector>();
             services.AddSingleton<ICollector, DSLCollector>();
             services.AddSingleton<ICollector, WANCollector>();
-            services.AddSingleton<ICollector, HomeAutomationCollector>();
+            // services.AddSingleton<ICollector, HomeAutomationCollector>();
 
             
         }

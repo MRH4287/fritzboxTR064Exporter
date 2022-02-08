@@ -6,6 +6,7 @@ using TR064Exporter.Clients;
 
 namespace TR064Exporter.Collectors
 {
+    [Obsolete]
     class HomeAutomationCollector : ICollector
     {
         private readonly TRClient<HomeAutomationClient> _client;
