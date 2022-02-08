@@ -40,7 +40,7 @@ namespace TR064Exporter.Loki
 
             var filteredLogs = logs
                 .Select(GetWithOffset)
-                .Where(entry => (DateTimeOffset.UtcNow - entry.Item1).TotalHours <= 2)
+                .Where(entry => (DateTimeOffset.UtcNow - entry.Item1) <= TimeSpan.FromHours(2))
                 .Select(GetWithTimestamp)
                 .ToList();
 

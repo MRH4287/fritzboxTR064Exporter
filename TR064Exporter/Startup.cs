@@ -27,7 +27,7 @@ namespace TR064Exporter
             services.AddSingleton(typeof(TRClient<>));
             services.AddSingleton<LokiClient>();
 
-            // services.AddHostedService<Collector>();
+            services.AddHostedService<Collector>();
             services.AddHostedService<LokiLogCollector>();
 
             // Collectors
