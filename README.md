@@ -21,5 +21,18 @@ It uses the User `apiUser` and the password `apiPassword`.
 
 You can access the metrics at `http://localhost:8123/metrics`.
 
+## Loki-Support
+You can push your Logs to a local Loki instance.
+To do so, add the `lokiEndpoint` to the Parameter.
+You can define the `job` Tab by adding the `lokiJobName` Parameter.
+
+The default is `fritzbox`.
+
+Example:
+```bash
+docker run -p 8123:5000 --name fritzboxExporter mrh4287/fritzbox_tr064_exporter ip=192.168.1.1 username=apiUser password=apiPassword lokiEndpoint=http://10.0.0.1:3100 lokiJobName=router
+```
+
+
 # Licence
 MIT Licence

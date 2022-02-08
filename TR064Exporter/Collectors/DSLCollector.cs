@@ -12,33 +12,33 @@ namespace TR064Exporter.Collectors
 
         #region Metrics
 
-        private readonly Gauge _EnabledGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_Enabled", "Is the DSL enabled");
-        private readonly Gauge _DownstreamAttenuationGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_DownstreamAttenuation", "The Downstream Attentuation");
-        private readonly Gauge _UpstreamAttenuationGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_UpstreamAttenuation", "The Upstream Attentuation");
-        private readonly Gauge _DownstreamCurrentRateGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_DownstreamCurrentRate", "The current Bitrate of the Downstream");
-        private readonly Gauge _DownstreamMaxRateGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_DownstreamMaxRate", "The maximal Downstream");
-        private readonly Gauge _DownstreamNoiseMarginGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_DownstreamNoiseMargin", "The Downstream Noise Margin");
-        private readonly Gauge _DownstreamPowerGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_DownstreamPower", "The Downstream Power");
-        private readonly Gauge _UpstreamCurrentRateGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_UpstreamCurrentRate", "The current Upstream Rate");
-        private readonly Gauge _UpstreamMaxRateGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_UpstreamMaxRate", "The maximal Upstream Rate");
-        private readonly Gauge _UpstreamNoiseMarginGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_UpstreamNoiseMargin", "The Upstream Noise Margin");
-        private readonly Gauge _UpstreamPowerGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_UpstreamPower", "The Upstream Power");
+        private readonly IGauge _EnabledGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_Enabled", "Is the DSL enabled");
+        private readonly IGauge _DownstreamAttenuationGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_DownstreamAttenuation", "The Downstream Attentuation");
+        private readonly IGauge _UpstreamAttenuationGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_UpstreamAttenuation", "The Upstream Attentuation");
+        private readonly IGauge _DownstreamCurrentRateGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_DownstreamCurrentRate", "The current Bitrate of the Downstream");
+        private readonly IGauge _DownstreamMaxRateGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_DownstreamMaxRate", "The maximal Downstream");
+        private readonly IGauge _DownstreamNoiseMarginGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_DownstreamNoiseMargin", "The Downstream Noise Margin");
+        private readonly IGauge _DownstreamPowerGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_DownstreamPower", "The Downstream Power");
+        private readonly IGauge _UpstreamCurrentRateGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_UpstreamCurrentRate", "The current Upstream Rate");
+        private readonly IGauge _UpstreamMaxRateGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_UpstreamMaxRate", "The maximal Upstream Rate");
+        private readonly IGauge _UpstreamNoiseMarginGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_UpstreamNoiseMargin", "The Upstream Noise Margin");
+        private readonly IGauge _UpstreamPowerGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_UpstreamPower", "The Upstream Power");
 
-        private readonly Gauge _ATUCCRCErrorsGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_ATUCCRCErrors", "The number of ATCCCRC Errors");
-        private readonly Gauge _ATUCFECErrorsGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_ATUCFECErrors", "The number of ATUCFEC Errors");
-        private readonly Gauge _ATUCHECErrorsGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_ATUCHECErrors", "The number of ATUCHEC Errors");
-        private readonly Gauge _CellDelinGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_CellDelin", "The Cell Delin");
-        private readonly Gauge _CRCErrorsGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_CRCErrors", "The number CRC errors");
-        private readonly Gauge _ErroredSecsGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_ErroredSecs", "The Errored Secs");
-        private readonly Gauge _FECErrorsGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_FECErrors", "The number FEC Errors");
-        private readonly Gauge _HECErrorsGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_HECErrors", "The number ERC Errors");
-        private readonly Gauge _InitErrorsGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_InitErrors", "The number of Init Errors");
-        private readonly Gauge _InitTimeoutsGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_InitTimeouts", "The number Init Timouts");
-        private readonly Gauge _LinkRetrainGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_LinkRetrain", "The Link Retrain");
-        private readonly Gauge _LossOfFramingGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_LossOfFraming", "The Loss of Framing");
-        private readonly Gauge _ReceiveBlocksGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_ReceiveBlocks", "The number of receibed Blocks");
-        private readonly Gauge _SeverelyErroredSecsGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_SeverelyErroredSecs", "The number of severly errored Secs");
-        private readonly Gauge _TransmitBlocksGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_DSL_TransmitBlocks", "The number of Transmit Blocks");
+        private readonly IGauge _ATUCCRCErrorsGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_ATUCCRCErrors", "The number of ATCCCRC Errors");
+        private readonly IGauge _ATUCFECErrorsGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_ATUCFECErrors", "The number of ATUCFEC Errors");
+        private readonly IGauge _ATUCHECErrorsGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_ATUCHECErrors", "The number of ATUCHEC Errors");
+        private readonly IGauge _CellDelinGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_CellDelin", "The Cell Delin");
+        private readonly IGauge _CRCErrorsGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_CRCErrors", "The number CRC errors");
+        private readonly IGauge _ErroredSecsGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_ErroredSecs", "The Errored Secs");
+        private readonly IGauge _FECErrorsGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_FECErrors", "The number FEC Errors");
+        private readonly IGauge _HECErrorsGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_HECErrors", "The number ERC Errors");
+        private readonly IGauge _InitErrorsGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_InitErrors", "The number of Init Errors");
+        private readonly IGauge _InitTimeoutsGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_InitTimeouts", "The number Init Timouts");
+        private readonly IGauge _LinkRetrainGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_LinkRetrain", "The Link Retrain");
+        private readonly IGauge _LossOfFramingGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_LossOfFraming", "The Loss of Framing");
+        private readonly IGauge _ReceiveBlocksGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_ReceiveBlocks", "The number of receibed Blocks");
+        private readonly IGauge _SeverelyErroredSecsGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_SeverelyErroredSecs", "The number of severly errored Secs");
+        private readonly IGauge _TransmitBlocksGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_DSL_TransmitBlocks", "The number of Transmit Blocks");
         private readonly TRClient<WANDSLInterfaceConfigClient> _client;
 
         #endregion

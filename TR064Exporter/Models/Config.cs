@@ -15,5 +15,10 @@ namespace TR064Exporter.Models
         public int? Port { get; set; }
 
         public int? Timeout { get; set; }
+
+        public string LokiEndpoint { get; set; }
+
+        public string LokiJobName { get; set; }
+
     }
 }

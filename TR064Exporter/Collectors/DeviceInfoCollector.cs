@@ -11,7 +11,7 @@ namespace TR064Exporter.Collectors
     {
         #region Metrics
 
-        private readonly Gauge _uptimeGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_deviceInfo_uptime", "The Uptime of the Fritzbox");
+        private readonly IGauge _uptimeGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_deviceInfo_uptime", "The Uptime of the Fritzbox");
 
         #endregion
 

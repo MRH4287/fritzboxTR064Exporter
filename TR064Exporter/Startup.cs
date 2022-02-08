@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Prometheus.Client.AspNetCore;
 using TR064Exporter.Collectors;
+using TR064Exporter.Loki;
 using TR064Exporter.Models;
 
 namespace TR064Exporter
@@ -13,6 +14,8 @@ namespace TR064Exporter
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient();
+
             services.AddSingleton(provider =>
             {
                 var config = provider.GetService<IConfiguration>();
@@ -22,8 +25,10 @@ namespace TR064Exporter
 
             services.AddSingleton<Connection>();
             services.AddSingleton(typeof(TRClient<>));
+            services.AddSingleton<LokiClient>();
 
-            services.AddHostedService<Collector>();
+            // services.AddHostedService<Collector>();
+            services.AddHostedService<LokiLogCollector>();
 
             // Collectors
 
@@ -33,9 +38,12 @@ namespace TR064Exporter
             services.AddSingleton<ICollector, LANEthernetCollector>();
             services.AddSingleton<ICollector, DSLCollector>();
             services.AddSingleton<ICollector, WANCollector>();
+            services.AddSingleton<ICollector, HomeAutomationCollector>();
+
+            
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory logger, IConfiguration configuration)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory logger, IConfiguration configuration)
         {
             app.UsePrometheusServer();
         }

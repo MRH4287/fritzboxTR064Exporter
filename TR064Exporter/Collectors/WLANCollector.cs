@@ -11,10 +11,10 @@ namespace TR064Exporter.Collectors
     {
         #region Metrics
 
-        private readonly Gauge _totalPackagesSentGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_WLAN_totalPackagesSent", "The total numbet of packages sent");
-        private readonly Gauge _totalPackagesReceivedGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_WLAN_totalPackagesReceived", "The total numbet of packages received");
+        private readonly IGauge _totalPackagesSentGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_WLAN_totalPackagesSent", "The total numbet of packages sent");
+        private readonly IGauge _totalPackagesReceivedGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_WLAN_totalPackagesReceived", "The total numbet of packages received");
 
-        private readonly Gauge _totalConnectionsGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_WLAN_total_connections", "The total number of connected devies");
+        private readonly IGauge _totalConnectionsGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_WLAN_total_connections", "The total number of connected devies");
 
         #endregion
 

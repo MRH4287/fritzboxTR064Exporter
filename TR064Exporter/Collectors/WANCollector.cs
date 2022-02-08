@@ -11,11 +11,11 @@ namespace TR064Exporter.Collectors
     {
         #region Metrics
 
-        private readonly Gauge _totalBytesSentGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_WAN_totalBytesSent", "The total number of bytes sent");
-        private readonly Gauge _totalBytesReceivedGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_WAN_totalBytesReceived", "The total number of bytes received");
+        private readonly IGauge _totalBytesSentGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_WAN_totalBytesSent", "The total number of bytes sent");
+        private readonly IGauge _totalBytesReceivedGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_WAN_totalBytesReceived", "The total number of bytes received");
 
-        private readonly Gauge _totalPackagesSentGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_WAN_totalPackagesSent", "The total number of packages sent");
-        private readonly Gauge _totalPackagesReceivedGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_WAN_totalPackagesReceived", "The total number of packages received");
+        private readonly IGauge _totalPackagesSentGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_WAN_totalPackagesSent", "The total number of packages sent");
+        private readonly IGauge _totalPackagesReceivedGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_WAN_totalPackagesReceived", "The total number of packages received");
 
         #endregion
 

@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using PS.FritzBox.API;
 using System;
@@ -7,27 +6,38 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using TR064Exporter.Collectors;
+using TR064Exporter.Models;
 
-namespace TR064Exporter
+namespace TR064Exporter.Loki
 {
-    class Collector : IHostedService, IDisposable
+    internal class LokiLogCollector: IHostedService, IDisposable
     {
-        private readonly IEnumerable<ICollector> _collectors;
-        private readonly ILogger<Collector> _logger;
-        private readonly IServiceProvider _serviceProvider;
+        private readonly TRClient<DeviceInfoClient> _tRClient;
+        private readonly LokiClient _loki;
+        private readonly Config _config;
+
         private CancellationTokenSource _tokenSource = new CancellationTokenSource();
         private Task _worker;
+        private HashSet<string> _knownLogs = new HashSet<string>();
 
-        public Collector(IEnumerable<ICollector> collectors, ILogger<Collector> logger, IServiceProvider serviceProvider) 
+        public LokiLogCollector(
+            TRClient<DeviceInfoClient> tRClient,
+            LokiClient loki,
+            Config config
+        )
         {
-            _collectors = collectors;
-            _logger = logger;
-            _serviceProvider = serviceProvider;
+            _tRClient = tRClient;
+            _loki = loki;
+            _config = config;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
         {
+            if (string.IsNullOrWhiteSpace(_config?.LokiEndpoint))
+            {
+                return Task.CompletedTask;
+            }
+
             _worker = Task.Run(Work);
             return Task.CompletedTask;
         }
@@ -36,20 +46,29 @@ namespace TR064Exporter
         {
             while (!_tokenSource.IsCancellationRequested)
             {
-                foreach (var collector in _collectors)
-                {
-                    try
-                    {
-                        await collector.CollectAsync().ConfigureAwait(false);
-                    }
-                    catch (Exception ex)
-                    {
-                        _logger.LogError(ex, $"Error while executing collector '{collector.GetType().Name}'");
-                    }
+                await HandleLogs();
+                await Task.Delay(15000, _tokenSource.Token).ConfigureAwait(false);
+            }
+        }
 
-                }
+        private async Task HandleLogs()
+        {
+            var client = await _tRClient.Get();
+            var logs = await client.GetDeviceLogAsync();
 
-                await Task.Delay(5000, _tokenSource.Token).ConfigureAwait(false);
+            var logsHashSet = new HashSet<string>(logs);
+            
+            logsHashSet.ExceptWith(_knownLogs);
+            _knownLogs.UnionWith(logsHashSet);
+
+            if (logsHashSet.Count > 0)
+            {
+                await _loki.PostLogs(logsHashSet);
+            }
+
+            if (logsHashSet.Count > 100)
+            {
+                logsHashSet.Clear();
             }
         }
 

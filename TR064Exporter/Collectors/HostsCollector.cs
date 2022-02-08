@@ -11,7 +11,7 @@ namespace TR064Exporter.Collectors
     {
         #region Metrics
 
-        private readonly Gauge _numberOfHostsGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_hosts_count", "The number of hosts");
+        private readonly IGauge _numberOfHostsGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_hosts_count", "The number of hosts");
 
         #endregion
 

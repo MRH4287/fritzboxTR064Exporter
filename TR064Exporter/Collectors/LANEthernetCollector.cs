@@ -11,14 +11,14 @@ namespace TR064Exporter.Collectors
     {
         #region Metrics
 
-        private readonly Gauge _bytesSentGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_LAN_bytesSent", "The number of bytes sent");
-        private readonly Gauge _bytesReceivedGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_LAN_bytesReceived", "The number of bytes received");
+        private readonly IGauge _bytesSentGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_LAN_bytesSent", "The number of bytes sent");
+        private readonly IGauge _bytesReceivedGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_LAN_bytesReceived", "The number of bytes received");
 
-        private readonly Gauge _packagesSentGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_LAN_packagesSent", "The number of packages sent");
-        private readonly Gauge _packagesReceivedGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_LAN_packagesReceived", "The number of packages received");
+        private readonly IGauge _packagesSentGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_LAN_packagesSent", "The number of packages sent");
+        private readonly IGauge _packagesReceivedGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_LAN_packagesReceived", "The number of packages received");
 
-        private readonly Gauge _maxBitrageGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_LAN_maxBitrate", "The maximum bitrate");
-        private readonly Gauge _lanEnabledGauge = Metrics.CreateGauge(Consts.MetricsPrefix + "_LAN_enabled", "Enabled");
+        private readonly IGauge _maxBitrageGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_LAN_maxBitrate", "The maximum bitrate");
+        private readonly IGauge _lanEnabledGauge = Metrics.DefaultFactory.CreateGauge(Consts.MetricsPrefix + "_LAN_enabled", "Enabled");
 
         #endregion
 
